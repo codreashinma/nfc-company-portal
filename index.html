@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>会社資料ポータル</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo-container">
+                <div class="logo-placeholder">
+                    <i class="fas fa-building"></i>
+                </div>
+                <h1>会社資料ポータル</h1>
+            </div>
+            <p class="tagline">NFCでアクセス、すぐに資料確認</p>
+        </header>
+
+        <main>
+            <section class="company-info">
+                <h2><i class="fas fa-info-circle"></i> 会社情報</h2>
+                <div class="card">
+                    <a href="#" id="company-website" class="btn btn-primary" target="_blank">
+                        <i class="fas fa-globe"></i> 会社ホームページ
+                    </a>
+                </div>
+            </section>
+
+            <section class="materials">
+                <h2><i class="fas fa-file-alt"></i> 説明資料</h2>
+                <div class="materials-container" id="materials-list">
+                    <!-- 資料はJavaScriptで動的に追加されます -->
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>このページはNFCカードからアクセスできます</p>
+            <button id="admin-btn" class="btn-admin"><i class="fas fa-cog"></i></button>
+        </footer>
+    </div>
+
+    <!-- 管理パネル -->
+    <div class="admin-panel" id="admin-panel">
+        <div class="admin-panel-content">
+            <h2>管理パネル</h2>
+            <button class="close-btn" id="close-admin"><i class="fas fa-times"></i></button>
+            
+            <div class="admin-section">
+                <h3>会社ホームページURL</h3>
+                <input type="text" id="company-url" placeholder="https://example.com">
+                <button class="btn btn-save" id="save-company-url">保存</button>
+            </div>
+            
+            <div class="admin-section">
+                <h3>資料の追加</h3>
+                <input type="text" id="material-title" placeholder="資料タイトル">
+                <input type="text" id="material-url" placeholder="資料のURL">
+                <select id="material-type">
+                    <option value="link">リンク</option>
+                    <option value="pdf">PDF</option>
+                </select>
+                <button class="btn btn-add" id="add-material">追加</button>
+            </div>
+            
+            <div class="admin-section">
+                <h3>資料の管理</h3>
+                <ul id="admin-materials-list">
+                    <!-- 資料リストがJavaScriptで動的に追加されます -->
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

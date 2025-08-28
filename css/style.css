@@ -1,0 +1,351 @@
+:root {
+    --primary-color: #4361ee;
+    --secondary-color: #3f37c9;
+    --accent-color: #4895ef;
+    --text-color: #333;
+    --light-text: #666;
+    --background: #f8f9fa;
+    --card-bg: #ffffff;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --transition: all 0.3s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Noto Sans JP', sans-serif;
+    background-color: var(--background);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* ヘッダースタイル */
+header {
+    text-align: center;
+    padding: 30px 0;
+    margin-bottom: 30px;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.logo-placeholder {
+    width: 50px;
+    height: 50px;
+    background-color: var(--primary-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 15px;
+    color: white;
+    font-size: 24px;
+}
+
+h1 {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+.tagline {
+    font-size: 16px;
+    color: var(--light-text);
+    font-weight: 300;
+}
+
+/* セクションスタイル */
+section {
+    margin-bottom: 40px;
+}
+
+h2 {
+    font-size: 22px;
+    margin-bottom: 20px;
+    color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.card {
+    background-color: var(--card-bg);
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* ボタンスタイル */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: var(--transition);
+    cursor: pointer;
+    border: none;
+    font-size: 16px;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: var(--secondary-color);
+}
+
+.btn-secondary {
+    background-color: var(--accent-color);
+    color: white;
+}
+
+.btn-secondary:hover {
+    background-color: #3d84d8;
+}
+
+.btn-save {
+    background-color: #2ecc71;
+    color: white;
+    padding: 8px 15px;
+}
+
+.btn-save:hover {
+    background-color: #27ae60;
+}
+
+.btn-add {
+    background-color: var(--accent-color);
+    color: white;
+    padding: 8px 15px;
+}
+
+.btn-add:hover {
+    background-color: #3d84d8;
+}
+
+.btn-delete {
+    background-color: #e74c3c;
+    color: white;
+    padding: 4px 8px;
+    font-size: 12px;
+    border-radius: 4px;
+}
+
+.btn-delete:hover {
+    background-color: #c0392b;
+}
+
+.btn-admin {
+    background: none;
+    border: none;
+    color: #999;
+    font-size: 20px;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.btn-admin:hover {
+    color: var(--primary-color);
+}
+
+/* 資料スタイル */
+.materials-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.material-card {
+    background-color: var(--card-bg);
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+}
+
+.material-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.material-title {
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 15px;
+}
+
+.material-icon {
+    font-size: 36px;
+    margin-bottom: 15px;
+    color: var(--primary-color);
+}
+
+/* フッタースタイル */
+footer {
+    text-align: center;
+    padding: 30px 0;
+    color: var(--light-text);
+    font-size: 14px;
+    position: relative;
+}
+
+/* 管理パネル */
+.admin-panel {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: var(--transition);
+}
+
+.admin-panel.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.admin-panel-content {
+    background-color: white;
+    border-radius: 10px;
+    padding: 30px;
+    width: 90%;
+    max-width: 600px;
+    max-height: 80vh;
+    overflow-y: auto;
+    position: relative;
+}
+
+.close-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: var(--light-text);
+}
+
+.admin-section {
+    margin-bottom: 30px;
+}
+
+.admin-section h3 {
+    font-size: 18px;
+    margin-bottom: 15px;
+    color: var(--primary-color);
+}
+
+input[type="text"], select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+#admin-materials-list {
+    list-style: none;
+}
+
+#admin-materials-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+/* レスポンシブデザイン */
+@media (max-width: 768px) {
+    .materials-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .logo-container {
+        flex-direction: column;
+    }
+    
+    .logo-placeholder {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+    
+    h1 {
+        font-size: 24px;
+    }
+    
+    .admin-panel-content {
+        padding: 20px;
+        width: 95%;
+    }
+}
+
+/* アニメーション */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.material-card {
+    animation: fadeIn 0.5s ease forwards;
+}
+
+.material-card:nth-child(2) {
+    animation-delay: 0.1s;
+}
+
+.material-card:nth-child(3) {
+    animation-delay: 0.2s;
+}
+
+.material-card:nth-child(4) {
+    animation-delay: 0.3s;
+}
+
+/* アクセシビリティ向上 */
+.btn:focus, input:focus, select:focus, .btn-admin:focus, .close-btn:focus {
+    outline: 2px solid var(--accent-color);
+    outline-offset: 2px;
+}
