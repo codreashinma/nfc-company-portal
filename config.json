@@ -1,23 +1,17 @@
 {
-  "companyUrl": "https://example.com",
+  "companyUrl": "https://codrea.net",
   "materials": [
     {
       "id": "1",
       "title": "会社概要資料",
-      "url": "https://example.com/company-profile.pdf",
+      "url": "https://c35be293-176f-4b6a-8055-a1500c64c5fb.usrfiles.com/ugd/c35be2_84b8f6efe36c4a17b1d8d6ea7a0e3f7a.pdf",
       "type": "pdf"
     },
-    {
-      "id": "2",
-      "title": "サービス紹介",
-      "url": "https://example.com/services",
-      "type": "link"
-    }
   ],
   "logoSettings": [
     {
       "id": "1",
-      "url": "https://example.com/logo.png",
+      "url": "https://static.wixstatic.com/media/e01bde_8ac948cba3544cf5b00af38a0e963f95~mv2.png",
       "width": 120,
       "height": 80,
       "position": "center"
