@@ -1,0 +1,26 @@
+{
+  "companyUrl": "https://example.com",
+  "materials": [
+    {
+      "id": "1",
+      "title": "会社概要資料",
+      "url": "https://example.com/company-profile.pdf",
+      "type": "pdf"
+    },
+    {
+      "id": "2",
+      "title": "サービス紹介",
+      "url": "https://example.com/services",
+      "type": "link"
+    }
+  ],
+  "logoSettings": [
+    {
+      "id": "1",
+      "url": "https://example.com/logo.png",
+      "width": 120,
+      "height": 80,
+      "position": "center"
+    }
+  ]
+}

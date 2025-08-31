@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>会社資料ポータル</title>
+    <title>CODREA情報ポータル</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,13 +13,18 @@
 <body>
     <div class="container">
         <header>
-            <div class="logo-container">
-                <div class="logo-placeholder">
-                    <i class="fas fa-building"></i>
+            <div class="header-content">
+                <div class="logo-area" id="logo-area">
+                    <!-- ロゴ画像がここに表示されます -->
+                    <div class="logo-placeholder">
+                        <i class="fas fa-building"></i>
+                    </div>
                 </div>
-                <h1>会社資料ポータル</h1>
+                <div class="title-area">
+                    <h1>CODREA情報ポータル</h1>
+                    <p class="tagline"></p>
+                </div>
             </div>
-            <p class="tagline">NFCでアクセス、すぐに資料確認</p>
         </header>
 
         <main>
@@ -52,32 +57,106 @@
             <h2>管理パネル</h2>
             <button class="close-btn" id="close-admin"><i class="fas fa-times"></i></button>
             
-            <div class="admin-section">
-                <h3>会社ホームページURL</h3>
-                <input type="text" id="company-url" placeholder="https://example.com">
-                <button class="btn btn-save" id="save-company-url">保存</button>
+            <!-- パスワード入力画面 -->
+            <div id="admin-login" class="admin-login">
+                <h3>管理者ログイン</h3>
+                <div class="input-group">
+                    <input type="password" id="admin-password" placeholder="パスワードを入力">
+                    <button class="btn btn-primary" id="login-btn">ログイン</button>
+                </div>
+                <p class="error-message" id="login-error"></p>
             </div>
             
-            <div class="admin-section">
-                <h3>資料の追加</h3>
-                <input type="text" id="material-title" placeholder="資料タイトル">
-                <input type="text" id="material-url" placeholder="資料のURL">
-                <select id="material-type">
-                    <option value="link">リンク</option>
-                    <option value="pdf">PDF</option>
-                </select>
-                <button class="btn btn-add" id="add-material">追加</button>
-            </div>
-            
-            <div class="admin-section">
-                <h3>資料の管理</h3>
-                <ul id="admin-materials-list">
-                    <!-- 資料リストがJavaScriptで動的に追加されます -->
-                </ul>
+            <!-- 管理パネルコンテンツ（ログイン後に表示） -->
+            <div id="admin-content" class="admin-content" style="display: none;">
+                <div class="admin-section">
+                    <h3>会社ロゴ設定</h3>
+                    <div id="logos-container">
+                        <!-- ロゴ設定フォームがここに動的に追加されます -->
+                    </div>
+                    
+                    <div class="logo-actions">
+                        <button class="btn btn-add" id="add-logo-btn"><i class="fas fa-plus"></i> ロゴを追加</button>
+                    </div>
+                    
+                    <div id="logos-preview">
+                        <h4>プレビュー</h4>
+                        <div class="preview-area"></div>
+                    </div>
+                    
+                    <button class="btn btn-save" id="save-logos">保存</button>
+                </div>
+                
+                <div class="admin-section">
+                    <h3>会社ホームページURL</h3>
+                    <input type="text" id="company-url" placeholder="https://example.com">
+                    <button class="btn btn-save" id="save-company-url">保存</button>
+                </div>
+                
+                <div class="admin-section">
+                    <h3>資料の追加</h3>
+                    <input type="text" id="material-title" placeholder="資料タイトル">
+                    <input type="text" id="material-url" placeholder="資料のURL">
+                    <select id="material-type">
+                        <option value="link">リンク</option>
+                        <option value="pdf">PDF</option>
+                    </select>
+                    <button class="btn btn-add" id="add-material">追加</button>
+                </div>
+                
+                <div class="admin-section">
+                    <h3>資料の管理</h3>
+                    <ul id="admin-materials-list">
+                        <!-- 資料リストがJavaScriptで動的に追加されます -->
+                    </ul>
+                </div>
+                
+                <div class="admin-section">
+                    <h3>カラー設定</h3>
+                    <div class="color-settings">
+                        <div class="color-setting-group">
+                            <label>メインカラー</label>
+                            <input type="color" id="primary-color" class="color-picker">
+                        </div>
+                        <div class="color-setting-group">
+                            <label>アクセントカラー</label>
+                            <input type="color" id="accent-color" class="color-picker">
+                        </div>
+                        <div class="color-setting-group">
+                            <label>背景色</label>
+                            <input type="color" id="background-color" class="color-picker">
+                        </div>
+                        <div class="color-setting-group">
+                            <label>カードの背景色</label>
+                            <input type="color" id="card-bg-color" class="color-picker">
+                        </div>
+                    </div>
+                    <button class="btn btn-save" id="save-colors">カラー設定を保存</button>
+                    <button class="btn btn-secondary" id="reset-colors">リモートデフォルトに戻す</button>
+                </div>
+                
+                <div class="admin-section">
+                    <h3>設定ファイル</h3>
+                    <p>現在の設定をconfig.jsonとしてエクスポートし、サーバーにアップロードしてください。</p>
+                    <button class="btn btn-secondary" id="export-config">設定をエクスポート</button>
+                    <div id="export-result" style="margin-top: 10px; display: none;">
+                        <textarea id="config-json" rows="5" style="width: 100%; margin-top: 10px;" readonly></textarea>
+                        <p class="help-text">このJSONをコピーして、config.jsonファイルとして保存してください。</p>
+                    </div>
+                </div>
+
+                <div class="admin-section">
+                    <h3>管理者パスワード変更</h3>
+                    <input type="password" id="new-password" placeholder="新しいパスワード">
+                    <input type="password" id="confirm-password" placeholder="パスワード確認">
+                    <button class="btn btn-save" id="change-password">パスワード変更</button>
+                    <p class="error-message" id="password-error"></p>
+                </div>
             </div>
         </div>
     </div>
 
     <script src="js/script.js"></script>
+    <script src="js/fix-admin.js" defer></script>
 </body>
 </html>
