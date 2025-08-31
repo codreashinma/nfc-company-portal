@@ -692,27 +692,44 @@ function initializeDefaultData() {
     const companyUrl = localStorage.getItem('companyUrl');
     const materials = getMaterials();
     
-    // データがなければデモデータを設定
+    // データがなければconfig.jsonのデータを設定
     if (!companyUrl && materials.length === 0) {
-        localStorage.setItem('companyUrl', 'https://example.com');
-        
-        const demoMaterials = [
-            {
-                id: '1',
-                title: '会社概要資料',
-                url: 'https://example.com/company-profile.pdf',
-                type: 'pdf'
-            },
-            {
-                id: '2',
-                title: 'サービス紹介',
-                url: 'https://example.com/services',
-                type: 'link'
-            }
-        ];
-        
-        saveMaterials(demoMaterials);
-        loadData(); // データを再読み込み
+        // config.jsonからデータを読み込む
+        fetch('config.json')
+            .then(response => response.json())
+            .then(config => {
+                if (config.companyUrl) {
+                    localStorage.setItem('companyUrl', config.companyUrl);
+                }
+                
+                if (config.materials && config.materials.length > 0) {
+                    saveMaterials(config.materials);
+                }
+                
+                if (config.logoSettings && config.logoSettings.length > 0) {
+                    localStorage.setItem('logos', JSON.stringify(config.logoSettings));
+                }
+                
+                loadData(); // データを再読み込み
+            })
+            .catch(error => {
+                console.error('設定ファイルの読み込みに失敗しました:', error);
+                
+                // 設定ファイルが読み込めない場合はデフォルト値を使用
+                localStorage.setItem('companyUrl', 'https://codrea.net');
+                
+                const defaultMaterials = [
+                    {
+                        id: '1',
+                        title: '会社概要資料',
+                        url: 'https://c35be293-176f-4b6a-8055-a1500c64c5fb.usrfiles.com/ugd/c35be2_84b8f6efe36c4a17b1d8d6ea7a0e3f7a.pdf',
+                        type: 'pdf'
+                    }
+                ];
+                
+                saveMaterials(defaultMaterials);
+                loadData(); // データを再読み込み
+            });
     }
 }
 
